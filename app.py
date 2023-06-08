@@ -1,22 +1,22 @@
 import joblib
-import numpy as np
-from flask import Flask, request,render_template
+from flask import Flask, render_template, request
 import pickle
-from sklearn.preprocessing import StandardScaler
+import numpy as np
+import pandas as pd
 import gunicorn
+from sklearn.preprocessing import StandardScaler
 
-def ValuePredictor(new_l): 
-    to_predict = np.array(new_l).reshape(1,7)
-    loaded_model = pickle.load(open("model.pkl", "rb")) 
-    result = loaded_model.predict(to_predict) 
-    return result[0] 
+filename = 'modelsvm.pkl'
+classifier = pickle.load(open(filename,'rb'))
+model = pickle.load(open('modelsvm.pkl','rb'))
 
-app = Flask(__name__,template_folder='templates')
-@app.route('/')
-def home_():
-    return render_template("index.html")
+app = Flask(__name__,template_folder='Template')
 
-@app.route('/predict',methods=['POST','GET'])
+@app.route('/',methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict() 
