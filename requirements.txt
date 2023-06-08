@@ -1,6 +1,6 @@
 numpy
 flask
-pickle
+pickle5
 scikit-learn
 pandas
 matplotlib
