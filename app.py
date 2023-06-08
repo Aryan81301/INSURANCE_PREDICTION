@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 from sklearn.preprocessing import StandardScaler
 import gunicorn
+
 def ValuePredictor(new_l): 
     to_predict = np.array(new_l).reshape(1,7)
     loaded_model = pickle.load(open("model.pkl", "rb")) 
