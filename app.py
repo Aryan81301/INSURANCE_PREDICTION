@@ -1,6 +1,6 @@
 import joblib
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request,render_template
 import pickle
 from sklearn.preprocessing import StandardScaler
 import gunicorn
@@ -11,7 +11,7 @@ def ValuePredictor(new_l):
     result = loaded_model.predict(to_predict) 
     return result[0] 
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 @app.route('/')
 def home_():
     return render_template("index.html")
