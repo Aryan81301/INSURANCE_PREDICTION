@@ -6,9 +6,9 @@ import pandas as pd
 import gunicorn
 from sklearn.preprocessing import StandardScaler
 
-filename = 'modelsvm.pkl'
+filename = 'model.pkl'
 classifier = pickle.load(open(filename,'rb'))
-model = pickle.load(open('modelsvm.pkl','rb'))
+model = pickle.load(open('model.pkl','rb'))
 
 app = Flask(__name__,template_folder='Template')
 
